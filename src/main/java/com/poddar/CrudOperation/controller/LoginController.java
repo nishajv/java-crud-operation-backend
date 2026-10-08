@@ -4,7 +4,7 @@ import com.poddar.CrudOperation.mapper.ApiResponse;
 import com.poddar.CrudOperation.mapper.LoginRequest;
 
 import com.poddar.CrudOperation.service.LoginService;
-i
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -23,7 +23,7 @@ public class LoginController {
     @PostMapping("/login")
     public ResponseEntity<?> login(@RequestBody LoginRequest loginRequest) {
 
-        boolean loginResult = loginService.LoginMethodService(loginRequest);
+        boolean loginResult = loginService.loginMethodService(loginRequest);
 
             if (loginResult == true) {
                 ApiResponse res = new ApiResponse();
@@ -45,7 +45,7 @@ public class LoginController {
                 //http://localhost:8080/login/delete
                 @PatchMapping("/delete/{id}")
                         public ResponseEntity<?> deleteUserProfile(@PathVariable long id){
-                    boolean deleteResult=loginService.LoginMethodService(id);
+                    boolean deleteResult=loginService.deleteMethodService(id);
                     if(deleteResult==true){
                         ApiResponse res = new ApiResponse();
                         res.setStatusCode(200);
@@ -63,6 +63,6 @@ public class LoginController {
                     }
                 }
             }
-        }
-    }
+
+
 
