@@ -12,22 +12,23 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
-import java.util.Optional;
+
 
 @RestController
 @RequestMapping("/user")
+@CrossOrigin("*")
 public class UserController {
+
 
     @Autowired
     UserService userService;
 
 
-    // http://localhost:8080/user/post
+    // http://localhost:8081/user/post
     @PostMapping("/post")
     public ResponseEntity<?> postUser(@RequestBody UserRequest userReq) {
 
-        UserResponse userResponse =
-                userService.postUserService(userReq);
+        UserResponse userResponse = userService.postUserService(userReq);
         System.out.println(userResponse);
         ApiResponse apiResponse = new ApiResponse();
 
@@ -40,7 +41,7 @@ public class UserController {
     }
 
 
-    // http://localhost:8080/user/getAll
+    // http://localhost:8081/user/getAll
     @GetMapping("/getAll")
     public ResponseEntity<?> getAllUser() {
 
@@ -58,15 +59,14 @@ public class UserController {
     }
 
 
-    // http://localhost:8080/user/1791220827482
+    // http://localhost:8081/user/1791220827482
     @GetMapping("/{id}")
     public ResponseEntity<?> getUserById(
             @PathVariable("id") long id) {
 
-        Optional<UserRegs> userResponse =
-                userService.getUserById(id);
+        UserRegs userResponse = userService.getUserById(id);
 
-        if (userResponse.isPresent()) {
+        if (userResponse != null) {
             ApiResponse res = new ApiResponse();
             res.setStatusCode(200);
             res.setMessage("user get successfully");

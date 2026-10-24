@@ -3,7 +3,7 @@ package com.poddar.CrudOperation.mapper;
 public class UserResponse {
     long id;
     String name;
-    long mobileNo;
+    String mobileNo;
     String email;
     String password;
 
@@ -31,11 +31,11 @@ public class UserResponse {
         this.name = name;
     }
 
-    public long getMobileNo() {
+    public String getMobileNo() {
         return mobileNo;
     }
 
-    public void setMobileNo(long mobileNo) {
+    public void setMobileNo(String mobileNo) {
         this.mobileNo = mobileNo;
     }
 

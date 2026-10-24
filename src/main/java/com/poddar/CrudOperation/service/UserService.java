@@ -14,22 +14,22 @@ import java.util.Optional;
 
 @Service
 public class UserService {
-    LocalDateTime currentDateTime= LocalDateTime.now();
-    DateTimeFormatter formatter= DateTimeFormatter.ofPattern("yyyy-MM-dd");
-    String dateString=currentDateTime.format(formatter);
+    LocalDateTime currentDateTime = LocalDateTime.now();
+    DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+    String dateString = currentDateTime.format(formatter);
 
     @Autowired
     UserRepositary userRepository;
 
     public UserResponse postUserService(UserRequest userRequest) {
-        UserResponse user=new UserResponse();
+        UserResponse user = new UserResponse();
         user.setEmail(userRequest.getEmail());
         user.setId(System.currentTimeMillis());
         user.setName(userRequest.getName());
         user.setPassword(userRequest.getPassword());
         user.setMobileNo(userRequest.getMobileNo());
         //
-        UserRegs user1= new UserRegs();
+        UserRegs user1 = new UserRegs();
         user1.setId(System.currentTimeMillis());
         user1.setName(userRequest.getName());
         user1.setEmail(userRequest.getEmail());
@@ -46,13 +46,26 @@ public class UserService {
 
         return user;
     }
+
     public List<UserRegs> getAllUser() {
         List<UserRegs> getAllUsers = userRepository.findAll();
         return getAllUsers;
     }
 
-    public Optional<UserRegs> getUserById(long id) {
-        Optional<UserRegs> getUserById =userRepository.findById(id);
-        return getUserById;
+    public UserRegs getUserById(long id) {
+        Optional<UserRegs> getUserById = userRepository.findById(id);
+        if (getUserById.isPresent()) {
+            UserRegs userRegs = getUserById.get();
+            if (userRegs.isStatus() == true) {
+                return userRegs;
+
+
+            } else {
+                return null;
+            }
+
+        } else {
+            return null;
+        }
     }
 }

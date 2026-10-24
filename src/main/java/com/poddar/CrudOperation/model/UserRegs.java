@@ -10,7 +10,7 @@ public class UserRegs {
     @Id
     long id;
     String name;
-    long mobileNo;
+    String mobileNo;
     String email;
     String password;
     String createDate;
@@ -34,11 +34,11 @@ public class UserRegs {
         this.id = id;
     }
 
-    public long getMobileNo() {
+    public String getMobileNo() {
         return mobileNo;
     }
 
-    public void setMobileNo(long mobileNo) {
+    public void setMobileNo(String mobileNo) {
         this.mobileNo = mobileNo;
     }
 
